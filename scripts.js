@@ -1,20 +1,37 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
+/*function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.id = self.crypto.randomUUID();
+}*/
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = self.crypto.randomUUID();
+    }
+    changeRead() {
+        if (this.read) {
+            this.read = false;
+        } else {
+            this.read = true;
+        }
+    }
 }
 
-Book.prototype.changeRead = function() {
+/*Book.prototype.changeRead = function() {
     if (this.read) {
         this.read = false;
     } else {
         this.read = true;
     }
-}
+}*/
 
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
