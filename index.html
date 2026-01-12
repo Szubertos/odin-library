@@ -21,11 +21,13 @@
         <form id="form">
             <div>
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" required />
+                <input type="text" id="title" name="title" minlength="3" required />
+                <label id="titleReminder" class="reminder">Please input the title</label>
             </div>
             <div>
                 <label for="author">Author</label>
-                <input type="text" id="author" name="author" required />
+                <input type="text" id="author" name="author" minlength="3" required />
+                <label id="authorReminder" class="reminder">Please input the author</label>
             </div>
             <div>
                 <label for="numberOfPages">Number of pages</label>
@@ -36,7 +38,7 @@
                 <input type="radio" id="radioYes" name="radioRead" value="Yes"><label>Yes</label>
                 <input type="radio" id="radioNo" name="radioRead" value="No"><label>No</label>
             </div>
-            <input type="submit" value="Submit" id="formSubmit">
+            <button id="formSubmit">Submit</button>
         </form>
     </dialog>
     <script src="scripts.js"></script>

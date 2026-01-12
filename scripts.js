@@ -127,27 +127,50 @@ btn.addEventListener("click", function(event){
     document.getElementById("dialog").show();
 })
 
+const titleInput = document.getElementById("title");
+titleInput.addEventListener("input", (event) => {
+        if (titleInput.validity.typeMismatch || titleInput.validity.tooShort) {
+            titleInput.setCustomValidity("I am expecting a full title!");
+        } else {
+            titleInput.setCustomValidity("");
+        }
+    })
+
+const authorInput = document.getElementById("author");
+authorInput.addEventListener("input", (event) => {
+        if (authorInput.validity.typeMismatch || authorInput.validity.tooShort) {
+            authorInput.setCustomValidity("I am expecting a full author name!");
+        } else {
+            authorInput.setCustomValidity("");
+        }
+    })
+
 //button in dialog for adding a new book
 const submitBtn = document.getElementById("formSubmit");
 submitBtn.addEventListener("click", function(event){
     event.preventDefault();
+    if (titleInput.validity.customError == false && authorInput.validity.customError == false) {
+        const title = document.getElementById("title").value;
+        const author = document.getElementById("author").value;
+        if (title == '' || author == '') {
+            return;
+        }
+        const pages = document.getElementById("numberOfPages").value;
+        const read = document.getElementById("radioYes").checked;
 
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    if (title == '' || author == '') {
-        return;
-    }
-    const pages = document.getElementById("numberOfPages").value;
-    const read = document.getElementById("radioYes").checked;
+        addBookToLibrary(title, author, pages, read);
+        displayLibrary(myLibrary);
 
-    addBookToLibrary(title, author, pages, read);
-    displayLibrary(myLibrary);
-
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    document.getElementById("numberOfPages").value = "";
-    document.getElementById("radioYes").checked = false;
-    document.getElementById("radioNo").checked = false;
+        document.getElementById("title").value = "";
+        document.getElementById("author").value = "";
+        document.getElementById("numberOfPages").value = "";
+        document.getElementById("radioYes").checked = false;
+        document.getElementById("radioNo").checked = false;
+        } else {
+            alert(titleInput.validationMessage);
+            alert(authorInput.validationMessage)
+        }
+    
 })
 
 //display library on page load, in case some data is saved (currently not possible outside of testing, but maybe someday?)
